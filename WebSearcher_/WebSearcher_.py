@@ -4,6 +4,7 @@ import reflex as rx
 
 from rxconfig import config
 from vue.pages.homepage import *
+from vue.pages.history_page import *
 
 
 class State(rx.State):

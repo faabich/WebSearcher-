@@ -10,9 +10,10 @@ def dashboard() -> rx.Component:
         The UI for the homepage.
 
     """
-    return rx.box(
+    return rx.flex(
         rx.hstack(
             rx.input(placeholder="Search the Web", type="text", id="search-input"),
             rx.button("Erase", on_click=rx.set_value("search-input", "")),
+            rx.theme_panel()
         )
     )
