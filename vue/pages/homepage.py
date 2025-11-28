@@ -1,6 +1,9 @@
 """The dashboard page."""
 
 import reflex as rx
+from vue.components.homepage_header import homepage_header
+
+
 
 @rx.page("/", title="Home - WebSearch++")
 def dashboard() -> rx.Component:
@@ -11,9 +14,5 @@ def dashboard() -> rx.Component:
 
     """
     return rx.flex(
-        rx.hstack(
-            rx.input(placeholder="Search the Web", type="text", id="search-input"),
-            rx.button("Erase", on_click=rx.set_value("search-input", "")),
-            rx.theme_panel()
-        )
+        homepage_header()
     )
