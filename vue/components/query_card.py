@@ -3,7 +3,7 @@ import reflex as rx
 # from vue.states.home_state import HomeState
 
 
-def special_operators_card() -> rx.Component:
+def query_card() -> rx.Component:
     """Render a single special operators card."""
     return rx.card(
         rx.flex(
@@ -14,62 +14,16 @@ def special_operators_card() -> rx.Component:
         rx.flex(
             rx.box(
                 rx.flex(
-                    rx.code("Définition (define:)", size="1"),
+                    rx.input(),
                     spacing="2",
                     align="center",
-                ),
-                rx.flex(
-                    rx.input(
-                        placeholder="Mot à définir"
-                    )
                 )
             ),
             rx.box(
                 rx.flex(
-                    rx.text("Météo (weather:)", size="1"),
+                    rx.button("Rechercher", size="1"),
                     spacing="2",
                     align="center",
-                ),
-                rx.flex(
-                    rx.input(
-                        placeholder="Lieu"
-                    )
-                )
-            ),
-            rx.box(
-                rx.flex(
-                    rx.text("Actions (stocks:)", size="1"),
-                    spacing="2",
-                    align="center",
-                ),
-                rx.flex(
-                    rx.input(
-                        placeholder="Symbole (ex: AAPL)"
-                    )
-                )
-            ),
-            rx.box(
-                rx.flex(
-                    rx.text("Carte (map:)", size="1"),
-                    spacing="2",
-                    align="center",
-                ),
-                rx.flex(
-                    rx.input(
-                        placeholder="Lieu"
-                    )
-                )
-            ),
-            rx.box(
-                rx.flex(
-                    rx.text("Film (movie:)", size="1"),
-                    spacing="2",
-                    align="center",
-                ),
-                rx.flex(
-                    rx.input(
-                        placeholder="Titre du Film"
-                    )
                 )
             ),
             spacing="2",
