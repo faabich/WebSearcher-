@@ -1,5 +1,9 @@
 """A component to display a single special operators card."""
 import reflex as rx
+
+from vue.states.home_state import HomeState
+
+
 # from vue.states.home_state import HomeState
 
 
@@ -22,6 +26,7 @@ def query_card() -> rx.Component:
             rx.box(
                 rx.flex(
                     rx.button("Rechercher", size="1"),
+                    on_click=HomeState.check_values,
                     spacing="2",
                     align="center",
                 )

@@ -1,6 +1,6 @@
 """A component to display a single special operators card."""
 import reflex as rx
-# from vue.states.home_state import HomeState
+from vue.states.home_state import HomeState
 
 
 def special_operators_card() -> rx.Component:
@@ -20,6 +20,8 @@ def special_operators_card() -> rx.Component:
                 ),
                 rx.flex(
                     rx.input(
+                        value=HomeState.OS_1,
+                        on_change=lambda value: HomeState.set_OS_values(1, value),
                         placeholder="Mot à définir"
                     )
                 )
@@ -32,6 +34,8 @@ def special_operators_card() -> rx.Component:
                 ),
                 rx.flex(
                     rx.input(
+                        value=HomeState.OS_2,
+                        on_change=lambda value: HomeState.set_OS_values(2, value),
                         placeholder="Lieu"
                     )
                 )
