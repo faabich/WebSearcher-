@@ -13,6 +13,10 @@ def dashboard() -> rx.Component:
         The UI for the homepage.
 
     """
-    return rx.flex(
-        homepage_header()
+    return rx.container(
+        rx.flex(
+            homepage_header(),
+            justify="center",
+            width="100%",
+        )
     )
