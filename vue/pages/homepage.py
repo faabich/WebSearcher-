@@ -2,6 +2,7 @@
 
 import reflex as rx
 from vue.components.homepage_header import homepage_header
+from vue.components.special_operators_card import special_operators_card
 
 
 
@@ -18,5 +19,12 @@ def dashboard() -> rx.Component:
             homepage_header(),
             justify="center",
             width="100%",
+        ),
+        rx.flex(
+            rx.vstack(
+                special_operators_card()
+            ),
+            justify="center",
+            width="100%"
         )
     )
