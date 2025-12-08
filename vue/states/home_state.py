@@ -2,9 +2,8 @@
 import reflex as rx
 import time
 from typing import List, Dict, Any
-from vue.states.history_state import BaseState
 
-class HomeState(BaseState):
+class HomeState(rx.State):
     """The state for the homepage."""
     search_engine: str = "google"
     # search_terms: List[SearchTerm] = [SearchTerm(id="1", value="", type="normal")]
@@ -20,6 +19,7 @@ class HomeState(BaseState):
     OS_1 = ""
     OS_2 = ""
     weather = ""
+    previous_paths: List[str] = []
 
     search_engines: Dict[str, Dict[str, str]] = {
         "google": {"name": "Google", "url": "https://www.google.com/search?q="},
@@ -114,3 +114,21 @@ class HomeState(BaseState):
         self.operator = "AND"
         self.weather = ""
         # ... reset other fields ...
+
+    def add_path(self):
+        """Add the current path to the history."""
+        current_path = self.router.url.path
+        if not self.previous_paths or self.previous_paths[-1] != current_path:
+            self.previous_paths.append(current_path)
+
+    def go_back(self):
+        """Navigate to the previous page and remove it from history."""
+        if self.previous_paths:
+            # Pop the current page
+            self.previous_paths.pop()
+            if self.previous_paths:
+                # Get the previous page and navigate
+                previous_path = self.previous_paths.pop()
+                return rx.redirect(previous_path)
+        # Fallback to homepage if no history
+        return rx.redirect("/")

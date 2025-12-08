@@ -30,7 +30,7 @@ initial_history = [
     ),
 ]
 
-class HistoryState(BaseState):
+class HistoryState(rx.State):
     """The state for the history page."""
     history: List[HistoryEntry] = initial_history
 
@@ -48,3 +48,21 @@ class HistoryState(BaseState):
     def copy_query(self, query: str):
         """Copy the search query to the clipboard."""
         return [rx.set_clipboard(query), rx.toast.success("Query copied!")]
+
+    def add_path(self):
+        """Add the current path to the history."""
+        current_path = self.router.url.path
+        if not self.previous_paths or self.previous_paths[-1] != current_path:
+            self.previous_paths.append(current_path)
+
+    def go_back(self):
+        """Navigate to the previous page and remove it from history."""
+        if self.previous_paths:
+            # Pop the current page
+            self.previous_paths.pop()
+            if self.previous_paths:
+                # Get the previous page and navigate
+                previous_path = self.previous_paths.pop()
+                return rx.redirect(previous_path)
+        # Fallback to homepage if no history
+        return rx.redirect("/")
