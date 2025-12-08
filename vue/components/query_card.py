@@ -15,18 +15,16 @@ def query_card() -> rx.Component:
         rx.flex(
             rx.box(
                 rx.flex(
-                    rx.input(),
+                    rx.input(
+                        value=HomeState.generated_query,
+                        is_read_only=True,
+                    ),
                     spacing="2",
                     align="center",
                 )
             ),
             rx.box(
-                rx.flex(
-                    rx.button("Rechercher", size="1"),
-                    on_click=HomeState.check_values,
-                    spacing="2",
-                    align="center",
-                )
+                rx.button("Rechercher", size="1", on_click=HomeState.search),
             ),
             spacing="2",
             width="100",

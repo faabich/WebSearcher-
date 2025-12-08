@@ -2,8 +2,9 @@
 import reflex as rx
 import time
 from typing import List, Dict, Any
+from vue.states.history_state import BaseState
 
-class HomeState(rx.State):
+class HomeState(BaseState):
     """The state for the homepage."""
     search_engine: str = "google"
     # search_terms: List[SearchTerm] = [SearchTerm(id="1", value="", type="normal")]
@@ -18,6 +19,7 @@ class HomeState(rx.State):
     operator: str = "AND"
     OS_1 = ""
     OS_2 = ""
+    weather = ""
 
     search_engines: Dict[str, Dict[str, str]] = {
         "google": {"name": "Google", "url": "https://www.google.com/search?q="},
@@ -34,30 +36,36 @@ class HomeState(rx.State):
         match number:
             case 1: self.OS_1 = value
             case 2: self.OS_2 = value
-    # @rx.var
-    # def generated_query(self) -> str:
-    #     """The generated search query."""
-    #     query_parts = []
-    #     # Build search terms
-    #     terms = [
-    #         f'"{term.value}"' if term.type == "exact" else term.value
-    #         for term in self.search_terms if term.value.strip()
-    #     ]
-    #     if terms:
-    #         query_parts.append(f" {self.operator} ".join(terms))
-    #
-    #     # Build other filters
-    #     if self.file_type:
-    #         ft = self.custom_file_type if self.file_type == "autre" else self.file_type
-    #         if ft:
-    #             query_parts.append(f"filetype:{ft}")
-    #     if self.site:
-    #         query_parts.append(f"site:{self.site}")
-    #     if self.in_title:
-    #         query_parts.append(f"intitle:{self.in_title}")
-    #     # ... other filters ...
-    #
-    #     return " ".join(query_parts)
+    @rx.var
+    def generated_query(self) -> str:
+        """The generated search query."""
+        query_parts = []
+        # Build search terms
+        # For now, let's use include_words as the main search term
+        # You can restore your `search_terms` logic here later.
+        if self.include_words:
+            query_parts.append(self.include_words)
+
+        # Build other filters
+        if self.file_type:
+            ft = self.custom_file_type if self.file_type == "autre" else self.file_type
+            if ft:
+                query_parts.append(f"filetype:{ft}")
+        if self.site:
+            query_parts.append(f"site:{self.site}")
+        if self.in_title:
+            query_parts.append(f"intitle:{self.in_title}")
+        if self.in_url:
+            query_parts.append(f"inurl:{self.in_url}")
+        if self.in_text:
+            query_parts.append(f"intext:{self.in_text}")
+        if self.OS_2:
+            query_parts.append(f"weather:{self.OS_2}")
+        if self.exclude_words:
+            for word in self.exclude_words.split():
+                query_parts.append(f"-{word}")
+
+        return " ".join(query_parts)
 
     # def add_search_term(self):
     #     """Add a new search term."""
@@ -90,7 +98,7 @@ class HomeState(rx.State):
         # In a real app, you would save to history here
         
         url = self.search_engines[self.search_engine]["url"] + self.generated_query
-        return rx.redirect(url, external=True)
+        return rx.redirect(url, is_external=True)
 
     def resetHomeState(self):
         """Reset the form."""
@@ -104,4 +112,5 @@ class HomeState(rx.State):
         self.exclude_words = ""
         self.include_words = ""
         self.operator = "AND"
+        self.weather = ""
         # ... reset other fields ...
