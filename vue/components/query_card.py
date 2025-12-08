@@ -1,19 +1,16 @@
-"""A component to display a single special operators card."""
+"""A component to display a query generation card."""
 import reflex as rx
 
 from vue.states.home_state import HomeState
 
-
-# from vue.states.home_state import HomeState
-
-
 def query_card() -> rx.Component:
-    """Render a single special operators card."""
+    """Render a heading and a responsive input in a card."""
     return rx.card(
         rx.flex(
             rx.box(
                 rx.heading("Requête générée", size="3")
-            )
+            ),
+            direction="column"
         ),
         rx.flex(
             rx.box(
