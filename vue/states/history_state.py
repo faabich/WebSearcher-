@@ -3,6 +3,7 @@ import reflex as rx
 import time
 from typing import List, Dict, Any
 from pydantic import BaseModel
+from vue.states.previous_redirection_state import BaseState
 
 class HistoryEntry(BaseModel):
     """A single history entry."""
@@ -30,7 +31,7 @@ initial_history = [
     ),
 ]
 
-class HistoryState(rx.State):
+class HistoryState(BaseState):
     """The state for the history page."""
     history: List[HistoryEntry] = initial_history
 
