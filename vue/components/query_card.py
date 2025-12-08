@@ -1,11 +1,9 @@
 """A component to display a single special operators card."""
 import reflex as rx
 
-from vue.states.home_state import HomeState
+from vue.ddgs.ddgs import DuckDuckGoSearch
 
-
-# from vue.states.home_state import HomeState
-
+ddgs = DuckDuckGoSearch()
 
 def query_card() -> rx.Component:
     """Render a single special operators card."""
@@ -26,7 +24,7 @@ def query_card() -> rx.Component:
             rx.box(
                 rx.flex(
                     rx.button("Rechercher", size="1"),
-                    on_click=HomeState.check_values,
+                    on_click=ddgs.launch_web_search(),
                     spacing="2",
                     align="center",
                 )

@@ -16,8 +16,11 @@ class HomeState(rx.State):
     exclude_words: str = ""
     include_words: str = ""
     operator: str = "AND"
-    OS_1 = ""
-    OS_2 = ""
+    OS_def: str = ""
+    OS_weather: str = ""
+    OS_action: str = ""
+    OS_map: str = ""
+    OS_movie: str = ""
 
     search_engines: Dict[str, Dict[str, str]] = {
         "google": {"name": "Google", "url": "https://www.google.com/search?q="},

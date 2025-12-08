@@ -20,7 +20,7 @@ def special_operators_card() -> rx.Component:
                 ),
                 rx.flex(
                     rx.input(
-                        value=HomeState.OS_1,
+                        value=HomeState.OS_def,
                         on_change=lambda value: HomeState.set_OS_values(1, value),
                         placeholder="Mot à définir"
                     )
@@ -34,7 +34,7 @@ def special_operators_card() -> rx.Component:
                 ),
                 rx.flex(
                     rx.input(
-                        value=HomeState.OS_2,
+                        value=HomeState.OS_weather,
                         on_change=lambda value: HomeState.set_OS_values(2, value),
                         placeholder="Lieu"
                     )
@@ -48,6 +48,8 @@ def special_operators_card() -> rx.Component:
                 ),
                 rx.flex(
                     rx.input(
+                        value=HomeState.OS_action,
+                        on_change=lambda value: HomeState.set_OS_values(2, value),
                         placeholder="Symbole (ex: AAPL)"
                     )
                 )
@@ -60,6 +62,8 @@ def special_operators_card() -> rx.Component:
                 ),
                 rx.flex(
                     rx.input(
+                        value=HomeState.OS_map,
+                        on_change=lambda value: HomeState.set_OS_values(2, value),
                         placeholder="Lieu"
                     )
                 )
@@ -72,6 +76,8 @@ def special_operators_card() -> rx.Component:
                 ),
                 rx.flex(
                     rx.input(
+                        value=HomeState.OS_movie,
+                        on_change=lambda value: HomeState.set_OS_values(2, value),
                         placeholder="Titre du Film"
                     )
                 )
