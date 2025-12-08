@@ -16,7 +16,7 @@ def history_page() -> rx.Component:
     """
     return rx.container(
         rx.flex(
-            previous_page_button(),
+            previous_page_button(on_click_handler=HistoryState.go_back),
             rx.flex(
                 rx.flex(
                     rx.icon("history", size=32, color_scheme="blue"),
