@@ -37,30 +37,36 @@ class HomeState(rx.State):
         match number:
             case 1: self.OS_1 = value
             case 2: self.OS_2 = value
-    # @rx.var
-    # def generated_query(self) -> str:
-    #     """The generated search query."""
-    #     query_parts = []
-    #     # Build search terms
-    #     terms = [
-    #         f'"{term.value}"' if term.type == "exact" else term.value
-    #         for term in self.search_terms if term.value.strip()
-    #     ]
-    #     if terms:
-    #         query_parts.append(f" {self.operator} ".join(terms))
-    #
-    #     # Build other filters
-    #     if self.file_type:
-    #         ft = self.custom_file_type if self.file_type == "autre" else self.file_type
-    #         if ft:
-    #             query_parts.append(f"filetype:{ft}")
-    #     if self.site:
-    #         query_parts.append(f"site:{self.site}")
-    #     if self.in_title:
-    #         query_parts.append(f"intitle:{self.in_title}")
-    #     # ... other filters ...
-    #
-    #     return " ".join(query_parts)
+    @rx.var
+    def generated_query(self) -> str:
+        """The generated search query."""
+        query_parts = []
+        # Build search terms
+        # For now, let's use include_words as the main search term
+        # You can restore your `search_terms` logic here later.
+        if self.include_words:
+            query_parts.append(self.include_words)
+
+        # Build other filters
+        if self.file_type:
+            ft = self.custom_file_type if self.file_type == "autre" else self.file_type
+            if ft:
+                query_parts.append(f"filetype:{ft}")
+        if self.site:
+            query_parts.append(f"site:{self.site}")
+        if self.in_title:
+            query_parts.append(f"intitle:{self.in_title}")
+        if self.in_url:
+            query_parts.append(f"inurl:{self.in_url}")
+        if self.in_text:
+            query_parts.append(f"intext:{self.in_text}")
+        if self.OS_2:
+            query_parts.append(f"weather:{self.OS_2}")
+        if self.exclude_words:
+            for word in self.exclude_words.split():
+                query_parts.append(f"-{word}")
+
+        return " ".join(query_parts)
 
     # def add_search_term(self):
     #     """Add a new search term."""
@@ -93,7 +99,7 @@ class HomeState(rx.State):
         # In a real app, you would save to history here
         
         url = self.search_engines[self.search_engine]["url"] + self.generated_query
-        return rx.redirect(url, external=True)
+        return rx.redirect(url, is_external=True)
 
     def resetHomeState(self):
         """Reset the form."""
@@ -108,3 +114,21 @@ class HomeState(rx.State):
         self.include_words = ""
         self.operator = "AND"
         # ... reset other fields ...
+
+    def add_path(self):
+        """Add the current path to the history."""
+        current_path = self.router.url.path
+        if not self.previous_paths or self.previous_paths[-1] != current_path:
+            self.previous_paths.append(current_path)
+
+    def go_back(self):
+        """Navigate to the previous page and remove it from history."""
+        if self.previous_paths:
+            # Pop the current page
+            self.previous_paths.pop()
+            if self.previous_paths:
+                # Get the previous page and navigate
+                previous_path = self.previous_paths.pop()
+                return rx.redirect(previous_path)
+        # Fallback to homepage if no history
+        return rx.redirect("/")
