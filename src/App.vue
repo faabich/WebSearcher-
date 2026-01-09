@@ -139,6 +139,7 @@ const handleSearch = () => {
     }
 };
 
+// Aide IA: How to load localstorage params on my app
 const handleLoadQuery = (entry) => {
     const params = entry.parameters;
 
