@@ -1,0 +1,253 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f9fb;
+    color: #1f2937;
+    margin: 0;
+    padding: 0;
+}
+
+.app-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 16px;
+}
+
+.main-title {
+    font-size: 2em;
+    font-weight: 700;
+    color: #1e40af;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.col-main, .col-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 10px;
+}
+
+.title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.label-info {
+    display: inline-flex;
+    gap: .1vw;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    background-color: #f9f9f9;
+}
+
+.input-field:focus {
+    border-color: #1e40af;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.2);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group-full {
+    grid-column: span 2;
+}
+
+.mt-small {
+    margin-top: 8px;
+}
+
+
+.btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 11pt;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-component {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+.btn-component:hover {
+    background-color: #2563eb;
+    color: #fff;
+}
+
+.btn-app {
+    background-color: #6b7280;
+    color: #fff;
+}
+
+.btn-app:hover {
+    background-color: #4b5563;
+    color: #fff;
+}
+
+.btn-red {
+    background-color: #ef4444;
+    color: #fff;
+}
+
+.btn-red:hover {
+    background-color: #dc2626;
+    color: #fff;
+}
+
+.icon-small {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-left {
+    margin-right: 8px;
+}
+
+.header-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.select-small {
+    width: auto;
+    padding: 5px 10px;
+    font-size: 0.85em;
+}
+
+.term-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.query-display {
+    border-left: 4px solid #1e40af;
+    margin-top: 25px;
+}
+
+.query-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.query-text {
+    background-color: #eef2ff;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: monospace;
+    display: block;
+    overflow-wrap: break-word;
+    font-size: 0.9em;
+}
+
+.query-text-placeholder {
+    color: #6b7280;
+    font-style: italic;
+}
+
+.query-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.history-metadata {
+    display: flex;
+    gap: 10px;
+    margin: 10px 10px 10px 0;
+}
+
+.filter-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 10px 10px 0;
+}
+
+.operator-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.operator-list li {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.operator-name {
+    font-weight: 600;
+    color: #1e40af;
+    flex-basis: 35%;
+}
+
+.operator-description {
+    flex-basis: 65%;
+    color: #6b7280;
+}
