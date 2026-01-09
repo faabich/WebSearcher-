@@ -58,7 +58,9 @@ const generatedQuery = computed(() => {
             }
         }
         query += termsList.join(` ${operator.value} `);
-        query = `(${query})`;
+        if (termsList.length > 1){
+            query = `(${query})`;
+        }
     }
 
     // Filtres
