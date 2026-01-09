@@ -1,11 +1,11 @@
 <script setup>
-import { defineModel} from 'vue';
+import {defineModel} from 'vue';
 
 const termsModel = defineModel('terms');
 const operatorModel = defineModel('operator');
 
 const addTerm = () => {
-    termsModel.value.push({value: '', type: 'normal' });
+    termsModel.value.push({value: '', type: 'normal'});
 };
 
 const removeTerm = (value) => {

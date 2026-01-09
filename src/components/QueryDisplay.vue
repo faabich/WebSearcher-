@@ -2,9 +2,9 @@
 import {defineModel} from "vue";
 
 const props = defineProps({
-    query: { type: String },
-    isLoading: { type: Boolean },
-    searchEngineName: { type: String },
+    query: {type: String},
+    isLoading: {type: Boolean},
+    searchEngineName: {type: String},
 });
 
 const emit = defineEmits(['search', 'copy']);
@@ -12,16 +12,16 @@ const emit = defineEmits(['search', 'copy']);
 const engineModel = defineModel('engine');
 
 const searchEngines = {
-    google: { name: "Google" },
-    duckduckgo: { name: "DuckDuckGo" },
-    bing: { name: "Bing" },
-    yahoo: { name: "Yahoo" },
-    brave: { name: "Brave" },
+    google: {name: "Google"},
+    duckduckgo: {name: "DuckDuckGo"},
+    bing: {name: "Bing"},
+    yahoo: {name: "Yahoo"},
+    brave: {name: "Brave"},
 };
 </script>
 
 <template>
-        <div class="card">
+    <div class="card">
         <h3 class="section-title">Moteur de Recherche</h3>
         <select v-model="engineModel" class="input-field">
             <option v-for="(engine, key) in searchEngines" :key="key" :value="key">
